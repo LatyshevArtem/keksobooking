@@ -1,9 +1,9 @@
 import { getRandomInteger, getRandomFloat, shuffleArray, getRandomArrayElement } from './utils.js';
 
 const RANDOM_AD_COUNT = 10;
-const RoomType = ['palace', 'flat', 'house', 'bungalow'];
-const CheckinTime = ['12:00', '13:00', '14:00'];
-const CheckoutTime = ['12:00', '13:00', '14:00'];
+const RoomTypes = ['palace', 'flat', 'house', 'bungalow'];
+const CheckinTimes = ['12:00', '13:00', '14:00'];
+const CheckoutTimes = ['12:00', '13:00', '14:00'];
 const Features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const Photos = [
   'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
@@ -34,8 +34,6 @@ const getRandomLocation = (minX, maxX, minY, maxY) => {
   };
 }
 
-
-
 const getRandomFeatures = () => {
   const randomFeatureCount = getRandomInteger(0, Features.length);
 
@@ -48,11 +46,11 @@ const getRandomPhotos = () => {
   return shuffleArray(Photos).slice(0, randomPhotoCount);
 }
 
-const getRandomAds = randomAdsCount => {
+const getRandomAds = randomAdCount => {
   const randomAvatars = getRandomAvatars();
   let randomAds = [];
 
-  for (let i = 0; i < randomAdsCount; i++) {
+  for (let i = 0; i < randomAdCount; i++) {
     const randomLocation = getRandomLocation(35.65000, 35.70000, 139.70000, 139.80000);
 
     randomAds.push({
@@ -63,20 +61,20 @@ const getRandomAds = randomAdsCount => {
         title: OFFER_TITLE,
         address: randomLocation.x + ', ' + randomLocation.y,
         price: getRandomInteger(1000, 100000),
-        type: RoomType[getRandomInteger(0, RoomType.length - 1)],
+        type: RoomTypes[getRandomInteger(0, RoomTypes.length - 1)],
         rooms: getRandomInteger(1, 5),
         guests: getRandomInteger(1, 5),
-        checkin: getRandomArrayElement(CheckinTime),
-        checkout: getRandomArrayElement(CheckoutTime),
+        checkin: getRandomArrayElement(CheckinTimes),
+        checkout: getRandomArrayElement(CheckoutTimes),
         features: getRandomFeatures(),
         description: OFFER_DESCRIPTION,
         photos: getRandomPhotos(),
       },
       location: randomLocation,
-    })
+    });
   }
 
   return randomAds;
 }
 
-export { getRandomAds };
+export { RANDOM_AD_COUNT, getRandomAds };

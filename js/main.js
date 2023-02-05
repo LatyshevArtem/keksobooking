@@ -1,1 +1,1 @@
-import { getRandomAds } from './data.js';
+import './render-similar-ads.js';
