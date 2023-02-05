@@ -24,7 +24,7 @@ const renderSimilarAd = similarAd => {
   newSimilarAdNode.querySelector('.popup__avatar').src = author.avatar;
   newSimilarAdNode.querySelector('.popup__title').textContent = offer.title;
   newSimilarAdNode.querySelector('.popup__text--address').textContent = offer.adress;
-  newSimilarAdNode.querySelector('.popup__text--price').textContent = `${offer.price} &#8381/ночь`;
+  newSimilarAdNode.querySelector('.popup__text--price').textContent = `${offer.price} \u20bd/ночь`;
   newSimilarAdNode.querySelector('.popup__type').textContent = transateRoomTypeToRussia(offer.type);
   newSimilarAdNode.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
   newSimilarAdNode.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
