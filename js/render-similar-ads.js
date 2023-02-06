@@ -1,5 +1,3 @@
-import { RANDOM_AD_COUNT, getRandomAds } from './data.js';
-
 const mapCanvas = document.querySelector('#map-canvas');
 const adCardTemplate = document.querySelector('#card').content;
 
@@ -34,7 +32,3 @@ const renderSimilarAd = similarAd => {
 
   mapCanvas.append(newSimilarAdNode);
 }
-
-const randomAds = getRandomAds(RANDOM_AD_COUNT);
-
-renderSimilarAd(randomAds[0]);

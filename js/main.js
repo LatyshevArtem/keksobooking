@@ -1,2 +1,3 @@
-import './render-similar-ads.js';
-import './ad-form.js';
+import { enableInactivePageState } from './page-state.js';
+
+enableInactivePageState();
