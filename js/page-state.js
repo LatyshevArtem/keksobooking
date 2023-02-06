@@ -13,4 +13,16 @@ const enableInactivePageState = () => {
   }
 }
 
-export { enableInactivePageState };
+const enableActivePageState = () => {
+  adForm.classList.toggle(AD_FORM_DISABLED_CLASS_NAME);
+  for (let element of adForm.children) {
+    element.disabled = false;
+  }
+
+  mapFiltersForm.classList.toggle(MAP_FILTERS_FORM_DISABLED_CLASS_NAME);
+  for (let element of mapFiltersForm.children) {
+    element.disabled = false;
+  }
+}
+
+export { enableInactivePageState, enableActivePageState };
