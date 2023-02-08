@@ -1,4 +1,3 @@
-import { setAddress } from './ad-form.js';
 import { enableActivePageState } from './page-state.js';
 import { getRandomAds, RANDOM_AD_COUNT } from './data.js';
 import { createAdCard } from './ad-card.js';
@@ -69,10 +68,7 @@ const map = L.map(MAP_CANSAV_ID);
 const randomAds = getRandomAds(RANDOM_AD_COUNT);
 
 const loadMap = () => {
-  map.on('load', () => {
-    setAddress(CENTER_TOKYO);
-    enableActivePageState();
-  });
+  map.on('load', enableActivePageState);
   map.setView(CENTER_TOKYO, ZOOM_LEVEL);
   addTileLayer();
   addMainPinMarker();
@@ -81,4 +77,4 @@ const loadMap = () => {
   addSimilarAdPinMarker(randomAds[2]);
 }
 
-export { loadMap };
+export { CENTER_TOKYO, loadMap };

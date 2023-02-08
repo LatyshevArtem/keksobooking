@@ -1,3 +1,5 @@
+import { CENTER_TOKYO } from "./map.js";
+
 const adForm = document.querySelector('.ad-form');
 const selectType = document.querySelector('#type');
 const inputPrice = document.querySelector('#price');
@@ -14,14 +16,16 @@ const MIN_PRICE_BY_TYPE = {
 
 const AD_FORM_DISABLED_CLASS_NAME = 'ad-form--disabled';
 
-selectType.addEventListener('change', () => {
+const setMinPricePerNight = () => {
   const optionSelectedIndex = selectType.selectedIndex;
   const optionSelectedValue = selectType.options[optionSelectedIndex].value;
   const minPrice = MIN_PRICE_BY_TYPE[optionSelectedValue];
 
-  inputPrice.setAttribute('min', minPrice);
-  inputPrice.setAttribute('placeholder', minPrice);
-})
+  inputPrice.min = minPrice;
+  inputPrice.placeholder = minPrice;
+}
+
+selectType.addEventListener('change', setMinPricePerNight);
 
 selectTimein.addEventListener('change', () => {
   selectTimeout.selectedIndex = selectTimein.selectedIndex;
@@ -37,4 +41,9 @@ const setAddress = newAddress => {
   address.value = `${formatedLat}, ${formatedLng}`
 }
 
-export { adForm, AD_FORM_DISABLED_CLASS_NAME, setAddress };
+const formInitialization = () => {
+  setAddress(CENTER_TOKYO);
+  setMinPricePerNight();
+}
+
+export { adForm, AD_FORM_DISABLED_CLASS_NAME, formInitialization };
