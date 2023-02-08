@@ -29,8 +29,8 @@ const getRandomAvatars = () => {
 
 const getRandomLocation = (minX, maxX, minY, maxY) => {
   return {
-    x: getRandomFloat(minX, maxX, 5),
-    y: getRandomFloat(minY, maxY, 5),
+    lat: getRandomFloat(minX, maxX, 5),
+    lng: getRandomFloat(minY, maxY, 5),
   };
 }
 
@@ -59,7 +59,7 @@ const getRandomAds = randomAdCount => {
       },
       offer: {
         title: OFFER_TITLE,
-        address: randomLocation.x + ', ' + randomLocation.y,
+        address: randomLocation.lat + ', ' + randomLocation.lng,
         price: getRandomInteger(1000, 100000),
         type: RoomTypes[getRandomInteger(0, RoomTypes.length - 1)],
         rooms: getRandomInteger(1, 5),
