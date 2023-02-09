@@ -1,6 +1,7 @@
 import { enableActivePageState } from './page-state.js';
 import { getRandomAds, RANDOM_AD_COUNT } from './data.js';
 import { createAdCard } from './ad-card.js';
+import { setAddress } from './ad-form.js';
 
 const MAP_CANSAV_ID = 'map-canvas';
 const CENTER_TOKYO = {
