@@ -49,7 +49,6 @@ const createAdCard = ({ author, offer}) => {
   newAdCard.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
   newAdCard.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   newAdCard.querySelector('.popup__description').textContent = offer.description;
-  newAdCard.querySelector('.popup__photos').append(...offer.photos);
 
   const featuresElement = newAdCard.querySelector('.popup__features');
   featuresElement.innerHTML = '';
