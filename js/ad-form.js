@@ -1,4 +1,4 @@
-import { CENTER_TOKYO } from './map.js';
+import { CENTER_TOKYO, resetMainPinMarker } from './map.js';
 import { resetMapFiltersForm } from './map-filters-form.js';
 import { showAdPostSuccessNotification, showAdPostErrorNotification } from './ad-post-notification.js';
 import { postAd } from './post-ad.js';
@@ -104,6 +104,7 @@ const formInitialization = () => {
 }
 
 const onSubmitFormSuccess = () => {
+  resetMainPinMarker()
   resetMapFiltersForm()
   adForm.reset()
   formInitialization()
@@ -112,6 +113,7 @@ const onSubmitFormSuccess = () => {
 
 adForm.addEventListener('reset', (evt) => {
   evt.preventDefault()
+  resetMainPinMarker()
   adForm.reset()
   formInitialization()
 })

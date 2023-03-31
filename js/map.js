@@ -49,11 +49,16 @@ const createNewPinMarker = (latLng, icon, draggable) => {
 
 const onMainPinMarkerLocationChange = newLocation => setAddress(newLocation);
 
-const addMainPinMarker = () => {
+const createMainPinMarker = () => {
   const mainPinIcon = createNewIcon(MAIN_PIN_ICON_URL, MAIN_PIN_ICON_SIZE, MAIN_PIN_ICON_ANCHOR);
   const mainPinMarker = createNewPinMarker(CENTER_TOKYO, mainPinIcon, true);
   mainPinMarker.on('moveend', evt => onMainPinMarkerLocationChange(evt.target.getLatLng()));
-  mainPinMarker.addTo(map);
+
+  return mainPinMarker
+}
+
+const resetMainPinMarker = () => {
+  mainPinMarker.setLatLng(CENTER_TOKYO)
 }
 
 const addSimilarAdPinMarker = (similarAd) => {
@@ -63,13 +68,14 @@ const addSimilarAdPinMarker = (similarAd) => {
   similarAdPinMarker.bindPopup(createAdCard(similarAd));
 }
 
+const mainPinMarker = createMainPinMarker()
 const map = L.map(MAP_CANSAV_ID);
 
 const loadMap = () => {
   map.on('load', enableActivePageState);
   map.setView(CENTER_TOKYO, ZOOM_LEVEL);
   addTileLayer();
-  addMainPinMarker();
+  mainPinMarker.addTo(map);
 }
 
-export { CENTER_TOKYO, loadMap, addSimilarAdPinMarker };
+export { CENTER_TOKYO, loadMap, addSimilarAdPinMarker, resetMainPinMarker };
