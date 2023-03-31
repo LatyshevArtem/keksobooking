@@ -1,4 +1,5 @@
 import { CENTER_TOKYO } from './map.js';
+import { postAd } from './post-ad.js';
 
 const adForm = document.querySelector('.ad-form');
 const selectType = document.querySelector('#type');
@@ -99,5 +100,11 @@ const formInitialization = () => {
   setAddress(CENTER_TOKYO);
   setMinPricePerNight();
 }
+
+adForm.addEventListener('submit', evt => {
+  evt.preventDefault();
+  const formData = new FormData(evt.target);
+  postAd(formData)
+})
 
 export { adForm, AD_FORM_DISABLED_CLASS_NAME, setAddress, formInitialization };
