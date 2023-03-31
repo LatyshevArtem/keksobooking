@@ -1,6 +1,6 @@
-import { enableActivePageState } from './page-state.js';
 import { createAdCard } from './ad-card.js';
 import { setAddress } from './ad-form.js';
+import { fetchAds } from './fetch-ads.js';
 
 const MAP_CANSAV_ID = 'map-canvas';
 const CENTER_TOKYO = {
@@ -72,7 +72,7 @@ const mainPinMarker = createMainPinMarker()
 const map = L.map(MAP_CANSAV_ID);
 
 const loadMap = () => {
-  map.on('load', enableActivePageState);
+  map.on('load', fetchAds);
   map.setView(CENTER_TOKYO, ZOOM_LEVEL);
   addTileLayer();
   mainPinMarker.addTo(map);
