@@ -1,5 +1,5 @@
 import { CENTER_TOKYO, resetMainPinMarker } from './map.js';
-import { resetMapFiltersForm } from './map-filters-form.js';
+import { resetFiltersForm } from './filters-form.js';
 import { showAdPostSuccessNotification, showAdPostErrorNotification } from './ad-post-notification.js';
 import { postAd } from './post-ad.js';
 
@@ -105,7 +105,7 @@ const formInitialization = () => {
 
 const onSubmitFormSuccess = () => {
   resetMainPinMarker()
-  resetMapFiltersForm()
+  resetFiltersForm()
   adForm.reset()
   formInitialization()
   showAdPostSuccessNotification()
@@ -124,4 +124,18 @@ adForm.addEventListener('submit', evt => {
   postAd(onSubmitFormSuccess, showAdPostErrorNotification, formData)
 })
 
-export { adForm, AD_FORM_DISABLED_CLASS_NAME, setAddress, formInitialization };
+const lockAdForm = () => {
+  adForm.classList.add(AD_FORM_DISABLED_CLASS_NAME);
+  for (let element of adForm.children) {
+    element.disabled = true;
+  }
+}
+
+const unlockAdForm = () => {
+  adForm.classList.remove(AD_FORM_DISABLED_CLASS_NAME);
+  for (let element of adForm.children) {
+    element.disabled = false;
+  }
+}
+
+export { lockAdForm, unlockAdForm, setAddress, formInitialization };
