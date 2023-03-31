@@ -1,16 +1,18 @@
-const METHODS = {
-  GET: 'GET',
-  POST: 'POST',
-}
-
 const URLS = {
-  GET: 'https://23.javascript.pages.academy/keksobooking/data',
-  POST: 'https://23.javascript.pages.academy/keksobooking',
+  GET_ADS: 'https://23.javascript.pages.academy/keksobooking/data',
+  POST_ADS: 'https://23.javascript.pages.academy/keksobooking',
 }
 
-const request = (onSuccess, onError ,method, url, data) => {
+const get = (onSuccess, onError, url) => {
+  fetch(url)
+    .then(response => response.json())
+    .then(response => onSuccess(response))
+    .catch(onError)
+}
+
+const post = (onSuccess, onError, url, data) => {
   fetch(url, {
-    method,
+    method: 'POST',
     body: data,
   })
     .then(response => response.json())
@@ -18,4 +20,4 @@ const request = (onSuccess, onError ,method, url, data) => {
     .catch(error => onError(error));
 }
 
-export { METHODS, URLS, request };
+export { URLS, get, post };
