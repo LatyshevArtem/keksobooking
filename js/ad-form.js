@@ -1,4 +1,6 @@
 import { CENTER_TOKYO } from './map.js';
+import { resetMapFiltersForm } from './map-filters-form.js';
+import { showAdPostSuccessNotification, showAdPostErrorNotification } from './ad-post-notification.js';
 import { postAd } from './post-ad.js';
 
 const adForm = document.querySelector('.ad-form');
@@ -101,10 +103,23 @@ const formInitialization = () => {
   setMinPricePerNight();
 }
 
+const onSubmitFormSuccess = () => {
+  resetMapFiltersForm()
+  adForm.reset()
+  formInitialization()
+  showAdPostSuccessNotification()
+}
+
+adForm.addEventListener('reset', (evt) => {
+  evt.preventDefault()
+  adForm.reset()
+  formInitialization()
+})
+
 adForm.addEventListener('submit', evt => {
   evt.preventDefault();
   const formData = new FormData(evt.target);
-  postAd(formData)
+  postAd(onSubmitFormSuccess, showAdPostErrorNotification, formData)
 })
 
 export { adForm, AD_FORM_DISABLED_CLASS_NAME, setAddress, formInitialization };
