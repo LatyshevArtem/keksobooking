@@ -1,12 +1,22 @@
-import { addSimilarAdPinMarker } from './map.js'
+import { renderAds } from './map.js'
 import { URLS, get } from './api.js';
-import { unlockFiltersForm } from './filters-form.js';
-
-const ADS_COUNT = 10;
+import {
+  unlockFiltersForm,
+  onHousingTypeChange,
+  onHousingPriceChange,
+  onHousingRoomsChange,
+  onHousingGuestsChange,
+  onHousingFeaturesChange
+} from './filters-form.js';
 
 const onFetchAdsSuccess = ads => {
-  unlockFiltersForm()
-  ads.slice(0, ADS_COUNT).forEach(ad => addSimilarAdPinMarker(ad));
+  unlockFiltersForm();
+  renderAds(ads);
+  onHousingTypeChange(() => renderAds(ads));
+  onHousingPriceChange(() => renderAds(ads));
+  onHousingRoomsChange(() => renderAds(ads));
+  onHousingGuestsChange(() => renderAds(ads));
+  onHousingFeaturesChange(() => renderAds(ads));
 }
 
 const onFetchAdsError = error => {
@@ -14,7 +24,7 @@ const onFetchAdsError = error => {
 }
 
 const fetchAds = () => {
-  get(onFetchAdsSuccess, onFetchAdsError, URLS.GET_ADS)
+  get(onFetchAdsSuccess, onFetchAdsError, URLS.GET_ADS);
 }
 
 export { fetchAds };
