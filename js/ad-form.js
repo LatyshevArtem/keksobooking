@@ -11,6 +11,10 @@ const selectTimeout = document.querySelector('#timeout');
 const address = document.querySelector('#address');
 const roomNumber = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
+const avatar = document.querySelector('#avatar');
+const avatarPreview = document.querySelector('.ad-form-header__preview img');
+const housImages = document.querySelector('#images');
+const houseImagesPreview = document.querySelector('.ad-form__photo');
 
 const MIN_PRICE_BY_TYPE = {
   'bungalow': 0,
@@ -54,6 +58,24 @@ selectTimein.addEventListener('change', () => {
 
 selectTimeout.addEventListener('change', () => {
   selectTimein.selectedIndex = selectTimeout.selectedIndex;
+})
+
+avatar.addEventListener('change', () => {
+  const file = avatar.files[0];
+  const reader = new FileReader();
+  reader.addEventListener('load', () => {
+    avatarPreview.src = reader.result;
+  })
+  reader.readAsDataURL(file);
+})
+
+housImages.addEventListener('change', () => {
+  const file = housImages.files[0];
+  const reader = new FileReader();
+  reader.addEventListener('load', () => {
+    houseImagesPreview.style.backgroundImage = `url(${reader.result}`;
+  })
+  reader.readAsDataURL(file);
 })
 
 const roomNumberCorrespondsCapacity = (currentRoomNumber, currentCapacity) => {
